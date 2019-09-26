@@ -44966,7 +44966,7 @@
                         "$ref": "#/parameters/ACCOUNT_ID"
                     },
                     {
-                        "$ref": "#/parameters/SOURCE_SERVICE"
+                        "$ref": "#/parameters/AUDIT_ID"
                     }
                 ],
                 "responses": {
@@ -45923,6 +45923,9 @@
                     },
                     {
                         "$ref": "#/parameters/ACCOUNT_ID"
+                    },
+                    {
+                        "$ref": "#/parameters/SOURCE_SERVICE"
                     }
                 ],
                 "responses": {
@@ -48595,44 +48598,41 @@
                 }
             }
         },
+        "/accounts/{ACCOUNT_ID}/services/audit/summary": {
+            "get": {
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/auth_token_header"
+                    },
+                    {
+                        "$ref": "#/parameters/ACCOUNT_ID"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "request succeeded"
+                    }
+                }
+            }
+        },
+        "/accounts/{ACCOUNT_ID}/services/audit/summary/{SOURCE_SERVICE}": {
+            "get": {
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/auth_token_header"
+                    },
+                    {
+                        "$ref": "#/parameters/ACCOUNT_ID"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "request succeeded"
+                    }
+                }
+            }
+        },
         "/accounts/{ACCOUNT_ID}/services/audit/{AUDIT_ID}": {
-            "get": {
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/auth_token_header"
-                    },
-                    {
-                        "$ref": "#/parameters/ACCOUNT_ID"
-                    },
-                    {
-                        "$ref": "#/parameters/AUDIT_ID"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "request succeeded"
-                    }
-                }
-            }
-        },
-        "/accounts/{ACCOUNT_ID}/services/audit_summary": {
-            "get": {
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/auth_token_header"
-                    },
-                    {
-                        "$ref": "#/parameters/ACCOUNT_ID"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "request succeeded"
-                    }
-                }
-            }
-        },
-        "/accounts/{ACCOUNT_ID}/services/audit_summary/{SOURCE_SERVICE}": {
             "get": {
                 "parameters": [
                     {
