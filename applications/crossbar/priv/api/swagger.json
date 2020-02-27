@@ -44985,7 +44985,7 @@
                         "$ref": "#/parameters/ACCOUNT_ID"
                     },
                     {
-                        "$ref": "#/parameters/AUDIT_ID"
+                        "$ref": "#/parameters/SOURCE_SERVICE"
                     }
                 ],
                 "responses": {
@@ -45049,9 +45049,6 @@
                     },
                     {
                         "$ref": "#/parameters/ACCOUNT_ID"
-                    },
-                    {
-                        "$ref": "#/parameters/SOURCE_SERVICE"
                     }
                 ],
                 "responses": {
@@ -46914,6 +46911,9 @@
                     },
                     {
                         "$ref": "#/parameters/ACCOUNT_ID"
+                    },
+                    {
+                        "$ref": "#/parameters/SOURCE_SERVICE"
                     }
                 ],
                 "responses": {
@@ -48661,7 +48661,7 @@
                         "$ref": "#/parameters/ACCOUNT_ID"
                     },
                     {
-                        "$ref": "#/parameters/SOURCE_SERVICE"
+                        "$ref": "#/parameters/AUDIT_ID"
                     }
                 ],
                 "responses": {
