@@ -46911,9 +46911,6 @@
                     },
                     {
                         "$ref": "#/parameters/ACCOUNT_ID"
-                    },
-                    {
-                        "$ref": "#/parameters/SOURCE_SERVICE"
                     }
                 ],
                 "responses": {
@@ -47309,6 +47306,9 @@
                     },
                     {
                         "$ref": "#/parameters/ACCOUNT_ID"
+                    },
+                    {
+                        "$ref": "#/parameters/SOURCE_SERVICE"
                     }
                 ],
                 "responses": {
