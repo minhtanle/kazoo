@@ -31,7 +31,7 @@ delete_yodbs(Period) ->
 %% @doc
 %% @end
 %%------------------------------------------------------------------------------
--spec delete_yodbs(kz_term:ne_binary(), boolean() | kz_term:ne_binary()) -> 'ok' | 'no_return'.
+-spec delete_yodbs(kz_term:year() | kz_term:ne_binary(), boolean() | kz_term:ne_binary()) -> 'ok' | 'no_return'.
 delete_yodbs(<<_/binary>> = Period, ShouldArchive) ->
     Regex = <<"(2[0-9]{3})">>,
     case re:run(Period, Regex, [{'capture', 'all', 'binary'}]) of
