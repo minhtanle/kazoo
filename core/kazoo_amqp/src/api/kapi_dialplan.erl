@@ -497,7 +497,7 @@ bridge_definition() ->
                 ,{<<"Custom-Channel-Vars">>, fun kz_json:is_json_object/1}
                 ,{<<"Custom-SIP-Headers">>, fun kz_json:is_json_object/1}
                 ,{<<"Endpoints">>, fun kz_json:are_json_objects/1}
-                ,{<<"SIP-Invite-Parameters">>, fun is_list/1}
+                ,{<<"SIP-Invite-Parameters">>, fun erlang:is_list/1}
                 ,{<<"Secure-RTP">>, fun kz_term:is_boolean/1}
                 ,{<<"Bridge-Actions">>, fun kz_json:is_json_object/1}
                 ]
@@ -584,7 +584,7 @@ bridge_endpoint_definition() ->
                 ,{<<"Endpoint-Options">>, fun kz_json:is_json_object/1}
                 ,{<<"Ignore-Early-Media">>, fun kz_term:is_boolean/1}
                 ,{<<"Bypass-Media">>, fun kz_term:is_boolean/1}
-                ,{<<"SIP-Invite-Parameters">>, fun is_list/1}
+                ,{<<"SIP-Invite-Parameters">>, fun erlang:is_list/1}
                 ]
                }
               ],
@@ -650,7 +650,7 @@ page_definition() ->
                 ]
                }
               ,{fun kapi_definition:set_types/2
-               ,[{<<"Endpoints">>, fun is_list/1}
+               ,[{<<"Endpoints">>, fun erlang:is_list/1}
                 ,{<<"Custom-SIP-Headers">>, fun kz_json:is_json_object/1}
                 ,{<<"Custom-Channel-Vars">>, fun kz_json:is_json_object/1}
                 ]
@@ -687,7 +687,7 @@ store_definition() ->
                 ]
                }
               ,{fun kapi_definition:set_types/2
-               ,[{<<"Additional-Headers">>, fun is_list/1}
+               ,[{<<"Additional-Headers">>, fun erlang:is_list/1}
                 ,{<<"Suppress-Error-Report">>, fun kz_term:is_boolean/1}
                 ]
                }
@@ -1000,7 +1000,7 @@ store_fax_definition() ->
                 ]
                }
               ,{fun kapi_definition:set_types/2
-               ,[{<<"Additional-Headers">>, fun is_list/1}
+               ,[{<<"Additional-Headers">>, fun erlang:is_list/1}
                 ]
                }
               ],
@@ -1133,34 +1133,34 @@ playstop_definition() ->
 
 -spec playseek_definition() -> kapi_definition:api().
 playseek_definition() ->
-EventName = <<"command">>,
-Category = <<"call">>,
-Setters = [{fun kapi_definition:set_name/2, EventName}
-          ,{fun kapi_definition:set_friendly_name/2, <<"PlaySeek">>}
-          ,{fun kapi_definition:set_description/2, <<"Change position in playing media">>}
-          ,{fun kapi_definition:set_category/2, Category}
-          ,{fun kapi_definition:set_build_fun/2, fun playseek/1}
-          ,{fun kapi_definition:set_validate_fun/2, fun playseek_v/1}
-          ,{fun kapi_definition:set_publish_fun/2, fun publish_command/2}
-          ,{fun kapi_definition:set_required_headers/2, [<<"Application-Name">>
-                                                        ,<<"Call-ID">>
-                                                        ,<<"Direction">>
-                                                        ,<<"Duration">>
-                                                        ]}
-          ,{fun kapi_definition:set_optional_headers/2, [<<"Insert-At">>
-                                                        ]}
-          ,{fun kapi_definition:set_values/2
-           ,[{<<"Application-Name">>, <<"playseek">>}
-            ,{<<"Insert-At">>, <<"now">>}
-             | kapi_definition:event_type_headers(Category, EventName)
-            ]
-           }
-          ,{fun kapi_definition:set_types/2
-           ,[{<<"Duration">>, fun is_integer/1}
-            ]
-           }
-          ],
-kapi_definition:setters(Setters).
+    EventName = <<"command">>,
+    Category = <<"call">>,
+    Setters = [{fun kapi_definition:set_name/2, EventName}
+              ,{fun kapi_definition:set_friendly_name/2, <<"PlaySeek">>}
+              ,{fun kapi_definition:set_description/2, <<"Change position in playing media">>}
+              ,{fun kapi_definition:set_category/2, Category}
+              ,{fun kapi_definition:set_build_fun/2, fun playseek/1}
+              ,{fun kapi_definition:set_validate_fun/2, fun playseek_v/1}
+              ,{fun kapi_definition:set_publish_fun/2, fun publish_command/2}
+              ,{fun kapi_definition:set_required_headers/2, [<<"Application-Name">>
+                                                            ,<<"Call-ID">>
+                                                            ,<<"Direction">>
+                                                            ,<<"Duration">>
+                                                            ]}
+              ,{fun kapi_definition:set_optional_headers/2, [<<"Insert-At">>
+                                                            ]}
+              ,{fun kapi_definition:set_values/2
+               ,[{<<"Application-Name">>, <<"playseek">>}
+                ,{<<"Insert-At">>, <<"now">>}
+                 | kapi_definition:event_type_headers(Category, EventName)
+                ]
+               }
+              ,{fun kapi_definition:set_types/2
+               ,[{<<"Duration">>, fun is_integer/1}
+                ]
+               }
+              ],
+    kapi_definition:setters(Setters).
 
 -spec tts_definition() -> kapi_definition:api().
 tts_definition() ->
@@ -1748,7 +1748,7 @@ tone_detect_definition() ->
                 ]
                }
               ,{fun kapi_definition:set_types/2
-               ,[{<<"On-Success">>, fun is_list/1}
+               ,[{<<"On-Success">>, fun erlang:is_list/1}
                 ,{<<"Timeout">>, fun tone_timeout_v/1}
                 ]
                }
@@ -1909,7 +1909,7 @@ tones_definition() ->
                 ]
                }
               ,{fun kapi_definition:set_types/2
-               ,[{<<"Tones">>, fun is_list/1}
+               ,[{<<"Tones">>, fun erlang:is_list/1}
                 ,{<<"Terminators">>, ?IS_TERMINATOR}
                 ]
                }
@@ -2089,7 +2089,7 @@ store_vm_definition() ->
                 ]
                }
               ,{fun kapi_definition:set_types/2
-               ,[{<<"Additional-Headers">>, fun is_list/1}
+               ,[{<<"Additional-Headers">>, fun erlang:is_list/1}
                 ,{<<"Suppress-Error-Report">>, fun kz_term:is_boolean/1}
                 ]
                }
@@ -2339,8 +2339,7 @@ queue_definition() ->
                                                             ,<<"Call-ID">>
                                                             ,<<"Commands">>
                                                             ]}
-              ,{fun kapi_definition:set_optional_headers/2, [<<"Insert-At">>
-                                                            ]}
+              ,{fun kapi_definition:set_optional_headers/2, [<<"Insert-At">>]}
               ,{fun kapi_definition:set_values/2
                ,[{<<"Application-Name">>, <<"queue">>}
                 ,?INSERT_AT_TUPLE
@@ -2348,7 +2347,7 @@ queue_definition() ->
                 ]
                }
               ,{fun kapi_definition:set_types/2
-               ,[{<<"Commands">>, fun is_list/1}
+               ,[{<<"Commands">>, fun erlang:is_list/1}
                 ]
                }
               ],
@@ -2374,7 +2373,7 @@ error_definition() ->
                                                             ]}
               ,{fun kapi_definition:set_values/2
                ,[{<<"Event-Name">>, EventName}
-                     | ?ERROR_RESP_VALUES
+                 | ?ERROR_RESP_VALUES
                 ]
                }
               ,{fun kapi_definition:set_types/2, ?ERROR_RESP_TYPES}
